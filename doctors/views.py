@@ -65,3 +65,8 @@ def delete_doctor(request, doctor_id):
     doctor.delete()
     messages.success(request, 'Doctor deleted successfully!')
     return redirect('doctor_list')
+
+@login_required
+def browse_doctors(request):
+    doctors = Doctor.objects.filter(available=True)
+    return render(request, 'doctors/browse_doctors.html', {'doctors': doctors})
