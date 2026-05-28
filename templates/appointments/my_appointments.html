@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="mb-4">📋 My Appointments</h3>
+
+{% if appointments %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>Doctor</th>
+                <th>Specialization</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>Dr. {{ appt.doctor.name }}</td>
+                <td>{{ appt.doctor.specialization }}</td>
+                <td>{{ appt.appointment_date }}</td>
+                <td>{{ appt.appointment_time }}</td>
+                <td>{{ appt.reason|default:"—" }}</td>
+                <td>
+                    {% if appt.status == 'pending' %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    {% elif appt.status == 'approved' %}
+                        <span class="badge bg-success">Approved</span>
+                    {% elif appt.status == 'completed' %}
+                        <span class="badge bg-secondary">Completed</span>
+                    {% elif appt.status == 'cancelled' %}
+                        <span class="badge bg-danger">Cancelled</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+    <div class="alert alert-info">You have no appointments yet. <a href="{% url 'book_appointment' %}">Book one now!</a></div>
+{% endif %}
+
+<a href="{% url 'book_appointment' %}" class="btn btn-primary mt-2">+ Book New Appointment</a>
+{% endblock %}

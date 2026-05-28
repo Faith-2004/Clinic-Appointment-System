@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="mb-4">🏥 Admin Dashboard</h3>
+<div class="mb-3">
+    <a href="{% url 'doctor_list' %}" class="btn btn-primary">👨‍⚕️ Manage Doctors</a>
+</div>
+
+<!-- Stats Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary text-center p-3">
+            <h2>{{ total }}</h2>
+            <p class="mb-0">Total Appointments</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning text-center p-3">
+            <h2>{{ pending }}</h2>
+            <p class="mb-0">Pending</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success text-center p-3">
+            <h2>{{ approved }}</h2>
+            <p class="mb-0">Approved</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-secondary text-center p-3">
+            <h2>{{ completed }}</h2>
+            <p class="mb-0">Completed</p>
+        </div>
+    </div>
+</div>
+
+<!-- Appointments Table -->
+<div class="card shadow">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">All Appointments</h5>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appt in appointments %}
+                <tr>
+                    <td>{{ appt.patient.username }}</td>
+                    <td>Dr. {{ appt.doctor.name }}</td>
+                    <td>{{ appt.appointment_date }}</td>
+                    <td>{{ appt.appointment_time }}</td>
+                    <td>{{ appt.reason|default:"—" }}</td>
+                    <td>
+                        {% if appt.status == 'pending' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif appt.status == 'approved' %}
+                            <span class="badge bg-success">Approved</span>
+                        {% elif appt.status == 'completed' %}
+                            <span class="badge bg-secondary">Completed</span>
+                        {% elif appt.status == 'cancelled' %}
+                            <span class="badge bg-danger">Cancelled</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if appt.status == 'pending' %}
+                            <a href="{% url 'update_appointment' appt.id 'approved' %}" class="btn btn-success btn-sm">✅ Approve</a>
+                            <a href="{% url 'update_appointment' appt.id 'cancelled' %}" class="btn btn-danger btn-sm">❌ Cancel</a>
+                        {% elif appt.status == 'approved' %}
+                            <a href="{% url 'update_appointment' appt.id 'completed' %}" class="btn btn-secondary btn-sm">✔ Complete</a>
+                        {% else %}
+                            <span class="text-muted">—</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="7" class="text-center text-muted">No appointments yet.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+       <div class="mb-3">
+    <a href="{% url 'doctor_list' %}" class="btn btn-primary me-2">👨‍⚕️ Manage Doctors</a>
+    <a href="{% url 'patient_list' %}" class="btn btn-success">🧑‍🤝‍🧑 Manage Patients</a>
+       </div>
+    </div>
+</div>
+
+{% endblock %}
