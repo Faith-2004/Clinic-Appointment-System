@@ -125,3 +125,13 @@ STATIC_URL = 'static/'
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/accounts/dashboard/'
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'fjkiprono7@gmail.com'       
+EMAIL_HOST_PASSWORD = 'wsgz wnfg iark iirp' 
+DEFAULT_FROM_EMAIL = 'Clinic System <fjkiprono7@gmail.com>'
+    
