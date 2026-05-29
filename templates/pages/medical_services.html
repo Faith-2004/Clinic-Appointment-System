@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Services - MedTrack Hospital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <img src="{% static 'images/logo.png' %}" style="height:45px;">
+        <div>
+            <div style="font-size:1.1rem; font-weight:700;">MedTrack Hospital</div>
+            <div style="font-size:0.65rem;">Tracking Care, Saving Lives</div>
+        </div>
+    </a>
+    <a href="/" class="btn btn-outline-light btn-sm">← Back to Home</a>
+</nav>
+
+<div class="container py-5">
+    <h2 style="font-weight:800; color:#0d6efd;">Medical Services We Offer</h2>
+    <p class="text-muted">Comprehensive healthcare services under one roof</p>
+    <hr>
+    <div class="row g-4 mt-2">
+        {% for service in services %}
+        <div class="col-md-3 col-6">
+            <div style="background:#f8f9ff; border-radius:15px; padding:25px; text-align:center; box-shadow:0 2px 15px rgba(0,0,0,0.05);">
+                <div style="font-size:2.5rem;">{{ service.icon }}</div>
+                <h6 style="font-weight:700; margin-top:10px;">{{ service.name }}</h6>
+                <p class="text-muted" style="font-size:0.85rem;">{{ service.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

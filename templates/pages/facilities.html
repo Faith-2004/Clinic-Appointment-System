@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facilities - MedTrack Hospital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <img src="{% static 'images/logo.png' %}" style="height:45px;">
+        <div>
+            <div style="font-size:1.1rem; font-weight:700;">MedTrack Hospital</div>
+            <div style="font-size:0.65rem;">Tracking Care, Saving Lives</div>
+        </div>
+    </a>
+    <a href="/" class="btn btn-outline-light btn-sm">← Back to Home</a>
+</nav>
+
+<div class="container py-5">
+    <h2 style="font-weight:800; color:#0d6efd;">Our Facilities</h2>
+    <p class="text-muted">World-class facilities for your comfort and care</p>
+    <hr>
+    <div class="row g-4 mt-2">
+        <div class="col-md-4">
+            <div style="border-left:4px solid #0d6efd; padding:20px 25px; background:#f8f9ff; border-radius:0 15px 15px 0;">
+                <h5 style="font-weight:700;">🏨 Modern Wards</h5>
+                <p class="text-muted">Comfortable private and semi-private rooms with modern amenities for a restful recovery.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="border-left:4px solid #0d6efd; padding:20px 25px; background:#f8f9ff; border-radius:0 15px 15px 0;">
+                <h5 style="font-weight:700;">🔬 Advanced Laboratory</h5>
+                <p class="text-muted">State-of-the-art diagnostic lab for fast and accurate test results.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="border-left:4px solid #0d6efd; padding:20px 25px; background:#f8f9ff; border-radius:0 15px 15px 0;">
+                <h5 style="font-weight:700;">🚑 24/7 Ambulance</h5>
+                <p class="text-muted">Round-the-clock ambulance services for emergency response anywhere in the city.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="border-left:4px solid #0d6efd; padding:20px 25px; background:#f8f9ff; border-radius:0 15px 15px 0;">
+                <h5 style="font-weight:700;">💊 In-house Pharmacy</h5>
+                <p class="text-muted">Fully stocked pharmacy available 24/7 for all your medication needs.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="border-left:4px solid #0d6efd; padding:20px 25px; background:#f8f9ff; border-radius:0 15px 15px 0;">
+                <h5 style="font-weight:700;">🏥 ICU & Theatre</h5>
+                <p class="text-muted">Fully equipped Intensive Care Unit and operating theatres for critical care.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div style="border-left:4px solid #0d6efd; padding:20px 25px; background:#f8f9ff; border-radius:0 15px 15px 0;">
+                <h5 style="font-weight:700;">🅿️ Free Parking</h5>
+                <p class="text-muted">Spacious and secure free parking available for all patients and visitors.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
