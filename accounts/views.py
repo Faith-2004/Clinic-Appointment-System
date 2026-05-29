@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 
+def home(request):
+    return render(request, 'home.html')
+
 
 def register_view(request):
     if request.method == 'POST':
