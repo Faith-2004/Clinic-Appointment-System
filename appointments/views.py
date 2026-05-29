@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Appointment
 from doctors.models import Doctor
+from .emails import send_appointment_email
 
 
 @login_required
@@ -73,5 +74,12 @@ def update_appointment(request, appointment_id, status):
     appointment = Appointment.objects.get(id=appointment_id)
     appointment.status = status
     appointment.save()
+
+    # Send email notification
+    try:
+        send_appointment_email(appointment)
+    except Exception as e:
+        print(f"Email error: {e}")
+
     messages.success(request, f'Appointment marked as {status}.')
     return redirect('admin_dashboard')
